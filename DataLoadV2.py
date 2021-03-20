@@ -102,6 +102,7 @@ def brain_contours(image, plots=False):
 '''
                                                         
 #%%
+
 #Cell 2a: Importing Data 
 train_BD_path='C:\\Users\\Surface\\Documents\\APS360\\archive\\Tumeur_cerveau\\train'
 validation_BD_path='C:\\Users\\Surface\\Documents\\APS360\\archive\\Tumeur_cerveau\\val'
@@ -110,6 +111,7 @@ validation_BD_path='C:\\Users\\Surface\\Documents\\APS360\\archive\\Tumeur_cerve
                                     transforms.ToTensor()])
 train_data_BD=ImageFolder(root=train_BD_path,transform=transform_group)
 validation_data_BD=ImageFolder(root=validation_BD_path,transform=transform_group)'''
+
 
 #%%
 class CroppedData(ImageFolder): 
@@ -133,10 +135,12 @@ class CroppedData(ImageFolder):
         output_image = torchvision.transforms.ToTensor()(cropped_image)
         return output_image, target
         
+
 data_train = CroppedData(train_BD_path)
 data_val = CroppedData(validation_BD_path)
 train_loader = torch.utils.data.DataLoader(data_train, batch_size = 1)
 val_loader = torch.utils.data.DataLoader(data_val, batch_size = 1)
+
 
 #%%
 '''Cell 2b: Visualize Subset of Train Data'''
